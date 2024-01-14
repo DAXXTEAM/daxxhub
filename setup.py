@@ -12,7 +12,7 @@ setup(
   author = 'Mr Daxx',                  
   author_email = 'mrdaxxteam@gmail.com',     
   url = 'https://github.com/daxxteam/daxxhub',   
-  download_url = 'https://github.com/daxxteam/daxxhub/archive/0.1.tar.gz',    
+  download_url = 'https://github.com/daxxteam/daxxhub/archive/1.2.tar.gz',    
   keywords = ['daxxhub', 'logo', 'generator'], 
   install_requires=[           
           'pillow',
