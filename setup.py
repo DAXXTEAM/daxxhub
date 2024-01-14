@@ -6,7 +6,7 @@ setup(
   name = 'daxxhub',        
   packages = ['daxxhub'],
   include_package_data=True,
-  version = '0.6',    
+  version = '1.1',    
   license='MIT',     
   description = 'daxxhub Logo Generator', 
   author = 'Mr Daxx',                  
