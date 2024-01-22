@@ -1,4 +1,4 @@
-```
+``` python
 
 import asyncio, os, time, aiohttp
 import aiohttp
@@ -14,8 +14,8 @@ async def daxxhub(_, message):
     os.remove(f"daxxhub_{message.from_user.id}.png")
 
 ```
-```
-sh pip install daxxhub
+``` python
+ pip install daxxhub
 
 ```
 
