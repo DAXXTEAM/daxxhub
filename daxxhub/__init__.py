@@ -1,12 +1,6 @@
-'''
-Author    : daxxteam 
-Github    : https://github.com/daxxteam
-Repository: https://github.com/daxxteam/daxxhub
-'''
 from PIL import Image, ImageFont, ImageDraw
 import os
 
-# Load the font
 font = ImageFont.truetype(os.path.dirname(__file__) + "/daxxhub.otf", 230)
 
 def daxxhub(teks):
