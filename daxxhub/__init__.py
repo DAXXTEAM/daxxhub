@@ -5,12 +5,31 @@ Repository: https://github.com/daxxteam/daxxhub
 '''
 from PIL import Image, ImageFont, ImageDraw
 import os
-font=ImageFont.truetype(os.path.dirname(__file__)+"/daxxhub.otf", 230)
+
+font = ImageFont.truetype(os.path.dirname(__file__) + "/daxxhub.otf", 230)
+
 def daxxhub(teks):
-    (draw:=ImageDraw.Draw((img:=Image.new("RGB", ((length:=font.getsize(teks))[0]+100, length[1]), color=(0, 0, 0))))).text((int((img.width/2)-(draw.textsize(teks, font)[0]/2)), int(-25)), teks, fill=(255, 148, 224), font=font)
-    (img2:=Image.new("RGB", ((hasil:=Paste(img)).width+400, hasil.height+400), color=(0, 0, 0))).paste(hasil, (int((img2.width/2)-(hasil.width/2)), int((img2.height/2)-(hasil.height/2))))
+    # Calculate text dimensions using font.getbbox()
+    bbox = font.getbbox(teks)
+    text_width, text_height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+
+    # Create base image with adjusted size
+    img = Image.new("RGB", (text_width + 100, text_height), color=(0, 0, 0))
+    draw = ImageDraw.Draw(img)
+
+    # Draw text centered on the image
+    text_x = (img.width - draw.textsize(teks, font=font)[0]) // 2
+    draw.text((text_x, -25), teks, fill=(255, 148, 224), font=font)
+
+    # Add border and paste into a larger image
+    img2 = Image.new("RGB", (img.width + 400, img.height + 400), color=(0, 0, 0))
+    img2.paste(Paste(img), ((img2.width - img.width) // 2, (img2.height - img.height) // 2))
+
     return img2
+
 def Paste(im):
-    (new:=Image.new("RGB", (im.width+20, im.height+20), color=(255, 148, 224))).paste(im, (int((new.width/2)-(im.width/2)), int((new.height/2)-(im.height/2))))
-    new.paste(im, (int((new.width/2)-(im.width/2)), int((new.height/2)-(im.height/2))))
+    # Create bordered image
+    new = Image.new("RGB", (im.width + 20, im.height + 20), color=(255, 148, 224))
+    new.paste(im, ((new.width - im.width) // 2, (new.height - im.height) // 2))
     return new
+    
