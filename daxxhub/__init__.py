@@ -1,13 +1,17 @@
 from PIL import Image, ImageFont, ImageDraw
 import os
 
-# Load the font
 font = ImageFont.truetype(os.path.dirname(__file__) + "/daxxhub.otf", 230)
 
 def daxxhub(teks):
-    # Calculate text dimensions using font.getbbox()
-    bbox = font.getbbox(teks)
-    text_width, text_height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    # Create a temporary image and draw object to calculate text size
+    temp_img = Image.new("RGB", (1, 1), color=(0, 0, 0))
+    temp_draw = ImageDraw.Draw(temp_img)
+    
+    # Calculate text dimensions using textbbox
+    bbox = temp_draw.textbbox((0, 0), teks, font=font)
+    text_width = bbox[2] - bbox[0]  # right - left
+    text_height = bbox[3] - bbox[1]  # bottom - top
 
     # Create base image with adjusted size
     img = Image.new("RGB", (text_width + 100, text_height + 100), color=(0, 0, 0))
@@ -29,4 +33,3 @@ def Paste(im):
     new = Image.new("RGB", (im.width + 20, im.height + 20), color=(255, 148, 224))
     new.paste(im, ((new.width - im.width) // 2, (new.height - im.height) // 2))
     return new
-    
