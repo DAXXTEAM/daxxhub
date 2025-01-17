@@ -1,6 +1,7 @@
 from PIL import Image, ImageFont, ImageDraw
 import os
 
+# Load the font
 font = ImageFont.truetype(os.path.dirname(__file__) + "/daxxhub.otf", 230)
 
 def daxxhub(teks):
@@ -9,7 +10,7 @@ def daxxhub(teks):
     text_width, text_height = bbox[2] - bbox[0], bbox[3] - bbox[1]
 
     # Create base image with adjusted size
-    img = Image.new("RGB", (text_width + 100, text_height), color=(0, 0, 0))
+    img = Image.new("RGB", (text_width + 100, text_height + 100), color=(0, 0, 0))
     draw = ImageDraw.Draw(img)
 
     # Calculate text position for centering
